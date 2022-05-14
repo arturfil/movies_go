@@ -5,7 +5,9 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"log"
 	"net/http"
+	"os"
 	"time"
 
 	"github.com/pascaldekloe/jwt"
@@ -24,6 +26,8 @@ type Credentials struct {
 }
 
 func (app *application) SignIn(w http.ResponseWriter, r *http.Request) {
+	log.Printf("HERE -> %s ", os.Getenv(("JWT_KEY")))
+
 	var creds Credentials
 
 	err := json.NewDecoder(r.Body).Decode(&creds)

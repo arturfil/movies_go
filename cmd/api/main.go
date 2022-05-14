@@ -47,13 +47,16 @@ func main() {
 
 	password := os.Getenv("DB_PASSWORD")
 	connection_string := fmt.Sprintf("postgres://arturofiliovilla:%spassword@localhost/movies?sslmode=disable", password)
+
 	// setting cfg.port
 	flag.IntVar(&cfg.port, "port", 8080, "Server running on port...")
+
 	// setting cfg.env
 	flag.StringVar(&cfg.env, "env", "development", "Application Environment (dev | prod)")
 	flag.StringVar(&cfg.db.dsn, "dsn", connection_string, "Postgress connection string")
-	flag.StringVar(&cfg.jwt.secret, "jwt-secret", "kjlasdflkj1432lkadf089asdfljk23408asdfljk32408", "secret")
 	flag.Parse()
+
+	cfg.jwt.secret = os.Getenv("JWT_SECRET")
 
 	logger := log.New(os.Stdout, "", log.Ldate|log.Ltime)
 
