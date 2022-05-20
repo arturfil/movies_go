@@ -46,7 +46,7 @@ func main() {
 	var cfg config
 
 	password := os.Getenv("DB_PASSWORD")
-	connection_string := fmt.Sprintf("postgres://arturofiliovilla:%s@localhost/movies?sslmode=disable", password)
+	connection_string := fmt.Sprintf("postgres://arturofiliovilla:%spassword@localhost/movies?sslmode=disable", password)
 
 	// setting cfg.port
 	flag.IntVar(&cfg.port, "port", 8080, "Server running on port...")
